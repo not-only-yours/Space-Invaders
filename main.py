@@ -47,15 +47,18 @@ def main():
             enemy.move(gv.ENEMY_VEL)
             enemy.move_lasers(gv.LASER_VEL, gv.GOOD_SHIP)
 
-            if gv.RANDOM_LIB.randrange(0, 60) == 1:
+            if gv.RANDOM_LIB.randrange(0, 20) == 1:
                 enemy.shoot()
 
             if gv.LaserCreator.collide(enemy, gv.GOOD_SHIP):
                 gv.GOOD_SHIP.health -= 10
                 gv.ENEMIES.remove(enemy)
+                gv.SCORE -= 20
+
             if enemy.y + gv.BAD_SHIP_SIZEY + 10 > gv.HEIGHT:
                 gv.LIVES -= 1
                 gv.ENEMIES.remove(enemy)
+                gv.SCORE -= 100
 
         gv.GOOD_SHIP.move_lasers(-gv.LASER_VEL, gv.ENEMIES)
 
@@ -68,7 +71,11 @@ if __name__ == '__main__':
         while run:
             gv.WINDOW.blit(gv.BACKGROUND_PNG, (0, 0))
             title_label = title_font.render("Press any button to begin...", 1, (255, 255, 255))
-            gv.WINDOW.blit(title_label, (gv.WIDTH / 2 - title_label.get_width() / 2, 350))
+            score_label = title_font.render("SCORE", 1, (255, 255, 255))
+            
+            gv.WINDOW.blit(title_label, (gv.WIDTH / 2 - title_label.get_width() / 2, 100))
+
+            gv.WINDOW.blit(score_label, (gv.WIDTH / 2 - score_label.get_width() / 2, 300))
             gv.PG_LIB.display.update()
             for event in gv.PG_LIB.event.get():
                 if event.type == gv.PG_LIB.QUIT:

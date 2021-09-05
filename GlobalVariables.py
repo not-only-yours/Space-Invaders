@@ -18,6 +18,7 @@ LOST = False
 FPS = 60
 LEVEL = 1
 LIVES = 5
+SCORE = 0
 WIDTH, HEIGHT = 750, 750
 PLAYER_VEL = 5
 LASER_VEL = 4
@@ -43,8 +44,8 @@ BAD_SHIP_RED_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets
 BAD_SHIP_BLUE_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "bad_ship_blue.png")), (BAD_SHIP_SIZEX, BAD_SHIP_SIZEX))
 BAD_SHIP_PURPLE_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "bad_ship_purple.png")), (BAD_SHIP_SIZEX, BAD_SHIP_SIZEX))
 
-BAD_LASER_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "bad_laser.png")), (LASER_SIZEX, LASER_SIZEY))
-GOOD_LASER_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "good_laser.png")), (LASER_SIZEX, LASER_SIZEY))
+BAD_BULLET_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "bad_bullet.png")), (LASER_SIZEX, LASER_SIZEY))
+GOOD_BULLET_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "good_bullet.png")), (LASER_SIZEX, LASER_SIZEY))
 
 # Created global variables of background images
 BACKGROUND_PNG = PG_LIB.transform.scale(PG_LIB.image.load(os.path.join("assets", "background.png")), (WIDTH, HEIGHT))
