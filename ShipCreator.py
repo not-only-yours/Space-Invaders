@@ -2,7 +2,7 @@ import GlobalVariables as gv
 
 
 class Ship:
-    COOLDOWN = 30
+    COOLDOWN = 30 # час перезарядки човна
 
     def __init__(self, x, y, health=100):
         self.x = x
@@ -13,12 +13,12 @@ class Ship:
         self.lasers = []
         self.cool_down_counter = 0
 
-    def draw(self, window):
+    def draw(self, window):  # створення човна
         gv.WINDOW.blit(self.ship_img, (self.x, self.y))
         for laser in self.lasers:
             laser.draw(gv.WINDOW)
 
-    def move_lasers(self, vel, obj):
+    def move_lasers(self, vel, obj): # рух пострілів
         self.coldown()
         for laser in self.lasers:
             laser.move(vel)
@@ -28,13 +28,13 @@ class Ship:
                 obj.health -= 10
                 self.lasers.remove(laser)
 
-    def shoot(self):
+    def shoot(self):        # постріл
         if self.cool_down_counter == 0:
             laser = gv.LaserCreator.Laser(self.x + 20, self.y, self.laser_img)
             self.lasers.append(laser)
             self.cool_down_counter = 1
 
-    def coldown(self):
+    def coldown(self): # механіка перезарядки
         if self.cool_down_counter >= self.COOLDOWN:
             self.cool_down_counter = 0
         elif self.cool_down_counter >= 0:
@@ -49,7 +49,7 @@ class Player(Ship):
         self.mask = gv.PG_LIB.mask.from_surface(self.ship_img)
         self.max_health = health
 
-    def move_lasers(self, vel, objs):
+    def move_lasers(self, vel, objs): #рух лазерів
         self.coldown()
         for laser in self.lasers:
             laser.move(vel)
@@ -63,7 +63,7 @@ class Player(Ship):
                         if laser in self.lasers:
                             self.lasers.remove(laser)
 
-    def healthbar(self, window):
+    def healthbar(self, window): # створення здоров'я
         gv.PG_LIB.draw.rect(window, (255, 0, 0), (self.x, self.y + gv.GOOD_SHIP_SIZEY + 10, gv.GOOD_SHIP_SIZEX, 10))
         gv.PG_LIB.draw.rect(window, (0, 255, 0), (self.x, self.y + gv.GOOD_SHIP_SIZEY + 10, gv.GOOD_SHIP_SIZEX * (
                     1 - ((self.max_health - self.health) / self.max_health)), 10))

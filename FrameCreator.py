@@ -1,7 +1,7 @@
 import GlobalVariables as gv
 
 
-def updateFrame():
+def updateFrame(): # оновлення фрейму
     gv.WINDOW.blit(gv.BACKGROUND_PNG, (0, 0))
 
     lives_label = gv.MAIN_FONT.render(f"Lives: {gv.LIVES}", 1, (255, 255, 255))
@@ -15,7 +15,7 @@ def updateFrame():
 
     gv.GOOD_SHIP.draw(gv.WINDOW)
 
-    if gv.LOST:
+    if gv.LOST:  # програш
         lost_label = gv.LOST_FONT.render(f"YOU LOST!", 1, (255, 255, 255))
         score_label = gv.LOST_FONT.render(f"YOUR SCORE IS: {gv.SCORE}", 1, (255, 255, 255))
         gv.WINDOW.blit(lost_label, (gv.WIDTH / 2 - lost_label.get_width() / 2, 250))
