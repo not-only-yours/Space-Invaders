@@ -14,6 +14,7 @@ FrameCreator_LIB = FrameCreator
 ShipCreator = sc
 LaserCreator = LaserCreator
 # Created global variables of Integer values
+NAME = "Invader"
 LOST = False
 FPS = 60
 LEVEL = 1

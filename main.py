@@ -66,20 +66,31 @@ def main():
 
 
 if __name__ == '__main__':
-        title_font = gv.PG_LIB.font.SysFont("comicsans", 70)
-        run = True
-        while run:
-            gv.WINDOW.blit(gv.BACKGROUND_PNG, (0, 0))
-            title_label = title_font.render("Press any button to begin...", 1, (255, 255, 255))
-            score_label = title_font.render("SCORE", 1, (255, 255, 255))
-            
-            gv.WINDOW.blit(title_label, (gv.WIDTH / 2 - title_label.get_width() / 2, 100))
+    title_font = gv.PG_LIB.font.SysFont("comicsans", 70)
+    run = True
+    main_menu = True
+    while run:
+        gv.WINDOW.blit(gv.BACKGROUND_PNG, (0, 0))
+        title_label = title_font.render("Press any button to begin...", 1, (255, 255, 255))
+        score_label = title_font.render("SCORE", 1, (255, 255, 255))
 
-            gv.WINDOW.blit(score_label, (gv.WIDTH / 2 - score_label.get_width() / 2, 300))
-            gv.PG_LIB.display.update()
-            for event in gv.PG_LIB.event.get():
-                if event.type == gv.PG_LIB.QUIT:
-                    run = False
-                if event.type == gv.PG_LIB.KEYDOWN or event.type == gv.PG_LIB.MOUSEBUTTONDOWN:
-                    main()
-        gv.PG_LIB.quit()
+        gv.WINDOW.blit(title_label, (gv.WIDTH / 2 - title_label.get_width() / 2, 100))
+        gv.WINDOW.blit(score_label, (gv.WIDTH / 2 - score_label.get_width() / 2, 200))
+        if main_menu:
+            main_menu = False
+            file1 = open('score_table.txt', 'r')
+            lines = file1.readlines()
+            del lines[3:]
+            if lines:
+                score = title_font.render(f"{lines}", 1, (255, 255, 255))
+            else:
+                score = title_font.render("NO SCORE YET!", 1, (255, 255, 255))
+        gv.WINDOW.blit(score, (gv.WIDTH / 2 - score.get_width() / 2, 300))
+        gv.WINDOW.blit(title_label, (gv.WIDTH / 2 - title_label.get_width() / 2, 100))
+        gv.PG_LIB.display.update()
+        for event in gv.PG_LIB.event.get():
+            if event.type == gv.PG_LIB.QUIT:
+                run = False
+            if event.type == gv.PG_LIB.KEYDOWN or event.type == gv.PG_LIB.MOUSEBUTTONDOWN:
+                main()
+    gv.PG_LIB.quit()
