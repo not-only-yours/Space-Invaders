@@ -16,14 +16,11 @@ def updateFrame():
     gv.GOOD_SHIP.draw(gv.WINDOW)
 
     if gv.LOST:
-        main_menu = True
         lost_label = gv.LOST_FONT.render(f"YOU LOST!", 1, (255, 255, 255))
         score_label = gv.LOST_FONT.render(f"YOUR SCORE IS: {gv.SCORE}", 1, (255, 255, 255))
         gv.WINDOW.blit(lost_label, (gv.WIDTH / 2 - lost_label.get_width() / 2, 250))
         gv.WINDOW.blit(score_label, (gv.WIDTH / 2 - score_label.get_width() / 2, 350))
-        file1 = open('score_table.txt', 'w')
-        file1.write(f"{gv.NAME}:{gv.SCORE}\n")
-        file1.close()
+
     gv.PG_LIB.display.update()
 
 
